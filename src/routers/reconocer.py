@@ -14,27 +14,31 @@ main = Blueprint('reconocer_blueprint', __name__)
 
 @main.route('/')
 def train_data():
-    hora_inicio = datetime.now()
+    # hora_inicio = datetime.now()
 
-    unknown_image = face_recognition.load_image_file(
-        './utils/img_tests/vale.jpg')
+    # unknown_image = face_recognition.load_image_file(
+    #     './utils/img_tests/vale.jpg')
 
-    unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
+    # unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
 
-    print("Reconociendo ...")
-    with open('./utils/base_datos_encoding.json') as file:
-        data = json.load(file)
-        nombre = "Desconocido_0000000000"
-        for d in data:
-            encoding = np.array(data[d])
-            results = face_recognition.compare_faces(
-                [encoding], unknown_encoding, tolerance=0.5)
-            if (results[0]):
-                nombre = d
-    tiempo = Cronometer.obtener_tiempo_transcurrido_formateado(hora_inicio)
+    # print("Reconociendo ...")
+    # with open('./utils/base_datos_encoding.json') as file:
+    #     data = json.load(file)
+    #     nombre = "Desconocido_0000000000"
+    #     for d in data:
+    #         encoding = np.array(data[d])
+    #         results = face_recognition.compare_faces(
+    #             [encoding], unknown_encoding, tolerance=0.5)
+    #         if (results[0]):
+    #             nombre = d
+    # tiempo = Cronometer.obtener_tiempo_transcurrido_formateado(hora_inicio)
+    # return jsonify({
+    #     "msg": nombre,
+    #     "time": str(tiempo)
+    # })
     return jsonify({
-        "msg": nombre,
-        "time": str(tiempo)
+        "msg": "No se envia img, ambiente de prd",
+        "time": "00"
     })
 
 
