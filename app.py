@@ -1,5 +1,4 @@
-# Planos de flask
-from flask import Blueprint, jsonify, request
+from flask import Flask,jsonify,request
 import face_recognition
 from datetime import datetime
 import numpy as np
@@ -9,40 +8,13 @@ import json
 
 from utils.cronometer import Cronometer
 
-main = Blueprint('reconocer_blueprint', __name__)
+app = Flask(__name__)
 
+@app.route('/')
+def get_movies():
+    return "<h1>Page MashkaSoft MashkaFutbol 1.0.0</h1>" , 404
 
-@main.route('/')
-def train_data():
-    # hora_inicio = datetime.now()
-
-    # unknown_image = face_recognition.load_image_file(
-    #     './utils/img_tests/vale.jpg')
-
-    # unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
-
-    # print("Reconociendo ...")
-    # with open('./utils/base_datos_encoding.json') as file:
-    #     data = json.load(file)
-    #     nombre = "Desconocido_0000000000"
-    #     for d in data:
-    #         encoding = np.array(data[d])
-    #         results = face_recognition.compare_faces(
-    #             [encoding], unknown_encoding, tolerance=0.5)
-    #         if (results[0]):
-    #             nombre = d
-    # tiempo = Cronometer.obtener_tiempo_transcurrido_formateado(hora_inicio)
-    # return jsonify({
-    #     "msg": nombre,
-    #     "time": str(tiempo)
-    # })
-    return jsonify({
-        "msg": "No se envia img, ambiente de prd",
-        "time": "00"
-    })
-
-
-@main.route('/person', methods=['POST'])
+@app.route('api/person/recognition', methods=['POST'])
 def post_data():
     try:
         print("Reconociendo ...")
@@ -82,12 +54,6 @@ def post_data():
                     [encoding], unknown_encoding, tolerance=0.5)
                 if (results[0]):
                     nombre = d
-        
-        #print( unknown_encoding )
-
-        #TODO
-        # MANIPULAR IMAGEN, AGREGAR EL CUADRO VERDE DONDE ESTE EL ROSTRO Y ENVIAR A BSE 64 A DATA
-        
 
         tiempo = Cronometer.obtener_tiempo_transcurrido_formateado(hora_inicio)
 
@@ -103,3 +69,8 @@ def post_data():
     except Exception as ex:
         print( str(ex) )
         return jsonify({'msg': str(ex)}), 500
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
