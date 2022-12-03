@@ -14,7 +14,7 @@ app = Flask(__name__)
 def get_movies():
     return "<h1>Page MashkaSoft MashkaFutbol 1.0.0</h1>" , 404
 
-@app.route('api/person/recognition', methods=['POST'])
+@app.route('/api/person/recognition', methods=['POST'])
 def post_data():
     try:
         print("Reconociendo ...")
