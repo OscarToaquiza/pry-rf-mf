@@ -1,5 +1,4 @@
 base_imgs_pry
 img_tests
 __pycache__
-.dokerignore
-Dokerfile
+dokerfiles
