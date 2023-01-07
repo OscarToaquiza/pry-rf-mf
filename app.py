@@ -45,7 +45,7 @@ def post_data():
 
         unknown_encoding = unknown_encoding[0]
 
-        with open('./utils/base_datos_encoding.json') as file:
+        with open('/home/oscarmashkasoft/pry-rf-mf/utils/base_datos_encoding.json') as file:
             dataJson = json.load(file)
             nombre = "Desconocido_0000000000"
             for d in dataJson:
