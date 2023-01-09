@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def get_movies():
-    return "<h1>Page MashkaSoft MashkaFutbol 2.0.0</h1>" , 404
+    return "<h1>Page MashkaSoft MashkaFutbol 3.0.0</h1>" , 404
 
 @app.route('/api/person/recognition', methods=['POST'])
 def post_data():
